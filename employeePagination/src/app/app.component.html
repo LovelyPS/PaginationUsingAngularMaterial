@@ -1,4 +1,7 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<h1 align="center">Angular Material Pagination</h1>
+
+<div class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" >
   <!-- code Column -->
   <ng-container matColumnDef="EmployeeCode">
     <mat-header-cell *matHeaderCellDef> EmployeeCode </mat-header-cell>
@@ -18,13 +21,13 @@
   </ng-container>
 
   <!-- doj Column -->
-  <ng-container matColumnDef="Date of Join">
+  <ng-container matColumnDef="doj">
     <mat-header-cell *matHeaderCellDef> Date of Join</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.doj}} </mat-cell>
   </ng-container>
 
   <!-- basicpay Column -->
-  <ng-container matColumnDef="Basic Pay">
+  <ng-container matColumnDef="BasicPay">
     <mat-header-cell *matHeaderCellDef> Basic Pay </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.basicsalary}} </mat-cell>
   </ng-container>
@@ -32,3 +35,10 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+
+</div>

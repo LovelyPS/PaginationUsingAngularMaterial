@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild,AfterViewInit } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 export interface Employee {
@@ -37,9 +39,15 @@ const ELEMENT_DATA: Employee[] = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'employeePagination';
-  displayedColumns: string[] = ['EmployeeCode', 'Name', 'Department', 'Date of Join','Basic Pay'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['EmployeeCode', 'Name', 'Department', 'doj','BasicPay'];
+  dataSource= new MatTableDataSource<Employee>(ELEMENT_DATA);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
   
 }
