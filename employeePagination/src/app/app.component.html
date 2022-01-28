@@ -1,1 +1,34 @@
-<button mat-raised-button>Hello Word</button>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- code Column -->
+  <ng-container matColumnDef="EmployeeCode">
+    <mat-header-cell *matHeaderCellDef> EmployeeCode </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.empcode}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+  <!-- department Column -->
+  <ng-container matColumnDef="Department">
+    <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+  </ng-container>
+
+  <!-- doj Column -->
+  <ng-container matColumnDef="Date of Join">
+    <mat-header-cell *matHeaderCellDef> Date of Join</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.doj}} </mat-cell>
+  </ng-container>
+
+  <!-- basicpay Column -->
+  <ng-container matColumnDef="Basic Pay">
+    <mat-header-cell *matHeaderCellDef> Basic Pay </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.basicsalary}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
