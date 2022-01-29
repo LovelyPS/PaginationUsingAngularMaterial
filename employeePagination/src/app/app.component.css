@@ -2,8 +2,15 @@
 div {
     margin: 20px;
 }
-table {
+.mat-table {
     width: 100%;
+    background-color: blanchedalmond;
   }
+.mat-paginator {
+    background-color: burlywood;
+}
+.mat-header-cell{
+    font-size: 20px;
+}
 
   
