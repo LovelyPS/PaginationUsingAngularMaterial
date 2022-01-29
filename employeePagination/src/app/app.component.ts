@@ -1,7 +1,7 @@
 import { Component, ViewChild,AfterViewInit } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { SharedService } from './shared.service';
 
 export interface Employee {
   empcode:number;
@@ -11,7 +11,7 @@ export interface Employee {
   basicsalary: number;
 }
 
-const ELEMENT_DATA: Employee[] = [
+/*const ELEMENT_DATA: Employee[] = [
   {empcode:1001,name: "Lovely",department: "Research & Development",doj: new Date("2022-01-17"),basicsalary: 22000},
   {empcode:1002,name: "Laly",department: "Marketing",doj: new Date("2022-01-17"),basicsalary: 25000},
   {empcode:1003,name: "Saimon",department: "Sales",doj: new Date("2022-01-17"),basicsalary: 28000},
@@ -31,7 +31,7 @@ const ELEMENT_DATA: Employee[] = [
   {empcode:1017,name: "Ancily",department: "Sales",doj: new Date("2021-01-17"),basicsalary: 70000},
   {empcode:1018,name: "Lincy",department: "Marketing",doj: new Date("2022-01-17"),basicsalary: 22000}
   
-];
+];*/
 
 
 @Component({
@@ -40,14 +40,20 @@ const ELEMENT_DATA: Employee[] = [
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit{
+
+  constructor(private service:SharedService) {}
   title = 'employeePagination';
   displayedColumns: string[] = ['EmployeeCode', 'Name', 'Department', 'doj','BasicPay'];
-  dataSource= new MatTableDataSource<Employee>(ELEMENT_DATA);
+  dataSource:MatTableDataSource<Employee>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.service.getEmpList().subscribe(employees=>{
+      this.dataSource=new MatTableDataSource(employees);
+      this.dataSource.paginator = this.paginator;
+    })
+    
   }
   
 }
