@@ -1,6 +1,14 @@
 <h1 align="center">Employee Management Portal</h1>
 
+
+
 <div class="mat-elevation-z8">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Research" #input>
+  </mat-form-field>
+  
 <mat-table [dataSource]="dataSource" >
   <!-- code Column -->
   <ng-container matColumnDef="EmployeeCode">

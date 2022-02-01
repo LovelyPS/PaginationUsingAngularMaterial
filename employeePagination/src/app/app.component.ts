@@ -1,4 +1,4 @@
-import { Component, ViewChild,AfterViewInit } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { SharedService } from './shared.service';
@@ -39,7 +39,7 @@ export interface Employee {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements OnInit{
 
   constructor(private service:SharedService) {}
   title = 'employeePagination';
@@ -48,12 +48,16 @@ export class AppComponent implements AfterViewInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  ngAfterViewInit() {
+  ngOnInit() {
     this.service.getEmpList().subscribe(employees=>{
       this.dataSource=new MatTableDataSource(employees);
       this.dataSource.paginator = this.paginator;
     })
     
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
 }
